@@ -5,7 +5,7 @@
 #
 ##############################################################
 
-AESD_ASSIGNMENTS_VERSION = 21d41f5b110dd392116eb4918664a74ab4474b00
+AESD_ASSIGNMENTS_VERSION = b6adb8a75a3e7bc293e16e7aef7536a7106bba47
 AESD_ASSIGNMENTS_SITE = git@github.com:usmn001/aesd3-usmn001.git
 AESD_ASSIGNMENTS_SITE_METHOD = git
 AESD_ASSIGNMENTS_GIT_SUBMODULES = YES
