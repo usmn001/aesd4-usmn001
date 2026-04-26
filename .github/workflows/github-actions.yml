@@ -9,14 +9,25 @@ jobs:
     full-test:
         container: cuaesd/aesd-autotest:24-assignment4-buildroot
         runs-on: self-hosted
-        timeout-minutes: 120
+        timeout-minutes: 180
         steps:
-          - uses: actions/checkout@v2
+          - uses: actions/checkout@v4
           - name: Checkout submodules
             run: git submodule update --init --recursive
-          - uses: webfactory/ssh-agent@v0.5.3
+          - uses: webfactory/ssh-agent@v0.9.0
             with:
                 ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          - name: Cache Buildroot downloads
+            uses: actions/cache@v3
+            with:
+              path: ~/.dl
+              key: buildroot-dl-${{ hashFiles('**/Config.in') }} 
+          - name: Set DL dir
+            run: echo "BR2_DL_DIR=$HOME/.dl" >> $GITHUB_ENV     
+          - name: Setup ccache
+            run: |
+              echo "BR2_CCACHE=y" >> buildroot/.config
+              echo "BR2_CCACHE_DIR=$HOME/.buildroot-ccache" >> buildroot/.config
           - name: Run full test
             env:
               GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
