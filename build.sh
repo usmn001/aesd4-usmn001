@@ -13,7 +13,7 @@ git submodule update
 set -e 
 cd `dirname $0`
 
-if [ ! -e output/.config ]
+if [ ! -e buildroot/.config ]
 then
 	echo "MISSING BUILDROOT CONFIGURATION FILE"
 
