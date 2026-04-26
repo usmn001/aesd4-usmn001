@@ -13,7 +13,7 @@ git submodule update
 set -e 
 cd `dirname $0`
 
-if [ ! -e buildroot/.config ]
+if [ ! -e output/.config ]
 then
 	echo "MISSING BUILDROOT CONFIGURATION FILE"
 
@@ -26,7 +26,7 @@ then
 		echo "Run ./save_config.s+h to save this as the default configuration in ${AESD_MODIFIED_DEFCONFIG}"
 		echo "Then add packages as needed to complete the installation, re-running ./save_config.sh as needed"
 		echo "USING BR2_EXTERNAL=${EXTERNAL_REL_BUILDROOT}"
-		make -C buildroot defconfig BR2_EXTERNAL=${EXTERNAL_REL_BUILDROOT} O=output BR2_DEFCONFIG=${AESD_DEFAULT_DEFCONFIG}
+		make -C buildroot defconfig BR2_EXTERNAL=${EXTERNAL_REL_BUILDROOT} O=output BR2_DEFCONFIG=${AESD_MODIFIED_DEFCONFIG_REL_BUILDROOT}
 	fi
 else
 	echo "USING EXISTING BUILDROOT CONFIG"
